@@ -1,3 +1,14 @@
+## Warning! This repository is still under development!
+
+final development steps: 
+
+    1). Installation --> mainly this means getting on PyPI for easy pip installation, and re-testing / double checking fresh installations and dependencies, test MacOS runner on GitHub actions
+    
+    2). Documentation --> mainly this means finalizing & converting existing .docx files --> .rst --> html --> readthedocs (using pandoc and sphinx). Also, ensuring no unintended data is bleeding into the docs.
+    
+    2). Debugging is on-going and a proper connection to the example data on Zenodo will be needed (more PalmettoBUG that this package)
+
+
 ## isoSegDenoise
 
 isoSegDenoise is a sister package, almost more of a plugin to the main PALMETTOBUG package. However, it is a fully independent, operable program separate from PALMETTOBUG.  
