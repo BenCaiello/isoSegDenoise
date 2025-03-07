@@ -16,7 +16,7 @@ It performs denoising and deepcell / cellpose segmentation steps within a PALMET
 
 _Why was this separated from PALMETTOBUG?_
 
-Because technically (although very debatably given how python / pip actually distributes packages) GPL licenses, as PALMETTOBUG & a number of its underlying packages are under, can't be linked to non-GPL compatible libraries. Deepcell is non-commercial, as are some of the segmentation models in cellpose, rendering them non-GPL compatible, so I separated them into this package. PALMETTOBUG does not directly interact with this package, instead it launches isoSegDenoise via command line in a separate process (it is not imported in the usual pythonic manner), passing only the directory and image resolutions in the command line arguments so that the user experience is seamless going from PALMETTOBUG to isoSegDenoise. 
+Because the deepcell / Mesmer package & segmentation model are licensed as non-commercial / academic, which conflicts with PalmettoBUG's GPL-3 license. Additionally, many Cellpose models may have similar restriction.
 
 ## Installation
 
@@ -39,6 +39,11 @@ running isoSegDenoise from the PLAMETTOBUG launch point, but can be done without
 ## Documentation
 
 The primary documentation for this package's usual use can be found in the PALMETTOBUG repository. A separate documentation may eventually be added for this package on its own.
+
+## LICENSE
+
+This repository is generally under the BSD-3 license. However, there is code copied from other software packages, which remains under their original licenses.
+**Warning! One of the critical softwares used by this package is the deepcell / Mesmer segmentation package & deep learning model: this is licensed under a non-commercial / academic use license! This makes its use more restricted than the rest of the code in this repository!**
 
 ## Citation
 
