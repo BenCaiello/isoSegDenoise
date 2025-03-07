@@ -24,7 +24,7 @@ Still under development, but once published on pip, should be as simple as:
 
     > pip install isoSegDenoise
 
-in a clean, **Python 3.9** conda environment.
+in a clean, **Python 3.10** environment (developed mainly using conda as the environment manager).
 
 This program can then be launched -- entirely speartely from PALMETTOBUG -- by typing:
 
