@@ -6,7 +6,7 @@ final development steps:
     
     2). Documentation --> mainly this means finalizing & converting existing .docx files --> .rst --> html --> readthedocs (using pandoc and sphinx). Also, ensuring no unintended data is bleeding into the docs.
     
-    2). Debugging is on-going and a proper connection to the example data on Zenodo will be needed (more PalmettoBUG that this package)
+    3). Debugging is on-going and a proper connection to the example data on Zenodo will be needed (more PalmettoBUG that this package). Also the ONNX deepcell model (PyTorch Deepcell variant) needs ot be uploaded into the vendors folder, but is a very large file (99 MB)
 
 
 ## isoSegDenoise
