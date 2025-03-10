@@ -183,7 +183,7 @@ class ImageProcessing:
         return
         if self.from_mcds:
             #try:
-                self.panel = pd.read_csv("".join([self.directory_object.main, "/panel.csv"]))
+            self.panel = pd.read_csv("".join([self.directory_object.main, "/panel.csv"]))
             '''
             except FileNotFoundError:
                 MCD_list = list_mcd_files(self.directory_object.main) 
@@ -206,7 +206,6 @@ class ImageProcessing:
                 self.panel['keep'] = self.panel['keep'].astype('int')
                 self.panel = self.panel.drop(['channel_test','name_test'],axis=1)
             '''
-
         else:
             try:
                 read_dir = "".join([self.directory_object.main, "/panel.csv"])
