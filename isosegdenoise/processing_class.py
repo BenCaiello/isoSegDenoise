@@ -182,9 +182,9 @@ class ImageProcessing:
         self.panel = pd.read_csv("".join([self.directory_object.main, "/panel.csv"]))   ## isosegdenoise can just always assume a panel should exist
         return
         if self.from_mcds:
-            try:
+            #try:
                 self.panel = pd.read_csv("".join([self.directory_object.main, "/panel.csv"]))
-
+            '''
             except FileNotFoundError:
                 MCD_list = list_mcd_files(self.directory_object.main) 
                 self.panel = create_panel_from_mcd_files(MCD_list)  
@@ -205,6 +205,7 @@ class ImageProcessing:
                 self.panel['keep'] = keep
                 self.panel['keep'] = self.panel['keep'].astype('int')
                 self.panel = self.panel.drop(['channel_test','name_test'],axis=1)
+            '''
 
         else:
             try:
