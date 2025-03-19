@@ -2,9 +2,9 @@
 
 final development steps: 
 
-    1). Installation --> mainly this means getting on PyPI for easy pip installation, and re-testing / double checking fresh installations and dependencies, test MacOS runner on GitHub actions
+    1). Installation --> mainly this means getting on PyPI for easy pip installation, and re-testing / double checking fresh installations and dependencies
     
-    2). Documentation --> this means put onto readthedocs and final edits
+    2). Documentation --> this means editing and putting onto readthedocs
 
 
 ## isoSegDenoise
@@ -18,25 +18,29 @@ Because the deepcell / Mesmer package & segmentation model are licensed as non-c
 
 ## Installation
 
-Still under development, but once published on pip, should be as simple as:
+Typically, this program would be installed by *>>> pip install palmettobug* as this package will be a listed dependency of PalmettoBUg to be automatically installed with it. 
+
+However, isoSegDenoise can be installed separately from PalmettoBUG if needed -- once published on PyPI, installation should be as simple as:
 
     > pip install isoSegDenoise
 
-in a clean, **Python 3.10** environment (this was developed mainly using conda as the environment manager).
+This should be run in a clean, **Python 3.10** environment (this was developed mainly using conda as the environment manager).
+It should also be possible to install with *Python 3.9*, but 3.10 is recommended unless you have a reason not to.
 
-This program can then be launched -- entirely separately from PALMETTOBUG -- by typing:
+This program can then be launched -- entirely separately from PalmettoBUG -- by issuing the command:
 
-    > SegDenoise
+    > segdenoise
 
-as a command in the set-up environment. 
+inside the environment this package was installed into. 
 
-To be useful it will need images located in the directory structure generated / required by PalmettoBUG (specifically it expects to find .tiff files within subfolders of an _/images_ folder)
-and it will export masks or denoised images to subfolders of the _/masks_ folder or to subfolders of the _/images/_ folder, respectively. This would usually be accomplished by
-launching isoSegDenoise from PalmettoBUG itself, but can be done without that as long as the directory structure is the same. 
+To be useful, it isoSegDenoise needs images located in the same directory structure generated / required by PalmettoBUG (specifically it expects to find .tiff files within subfolders of an _/images_ folder).
+Further, it will export masks or denoised images to subfolders of the _/masks_ folder or to subfolders of the _/images/_ folder, respectively -- which is where PalmettoBUG expects to find such files. Launching isoSegDenoise from PalmettoBUG itself can guarantee the directory integrates smoothly, but isoSegDenoise can be launched and used separately from PalmettoBUG as long as the directory structure selected is the same. 
+
+Environments
 
 ## Documentation
 
-The primary documentation for this package's usual use can be found in the PalmettoBUG repository. A separate documentation may eventually be added for this package on its own.
+The documentation for the PalmettoBUG repository contains information about how to use this package & its GUI. Separate documentation may eventually be placed on readthedocs for this package on its own.
 
 ## LICENSE
 
