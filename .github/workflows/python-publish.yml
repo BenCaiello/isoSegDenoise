@@ -6,6 +6,8 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
+## this document edited from GitHub action's PyPI publishing template (original license = MIT license)
+
 name: Upload Python Package
 
 on:
