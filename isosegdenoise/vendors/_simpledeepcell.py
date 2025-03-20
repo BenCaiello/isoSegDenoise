@@ -80,9 +80,11 @@ try:
 
 except ImportError:
     _is_torch = True
-    import torch
-    import onnx
-    import onnx2torch
+
+import torch
+import onnx
+import onnx2torch
+    
 ##>>##
 
 import logging
@@ -1083,7 +1085,7 @@ class Application(object):
                 # alt. for pytorch model:
                 with torch.inference_mode():
                     batch_outputs = self.model(torch.from_numpy(batch_inputs))
-                    print(batch_outputs)
+                    #print(batch_outputs)
             ####################################################      ##>>##
 
             # model with only a single output gets temporarily converted to a list
