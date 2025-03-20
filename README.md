@@ -2,7 +2,7 @@
 
 final development steps: 
     
-    1). Documentation --> this means editing and putting onto readthedocs
+    1). Documentation --> this means editing and putting onto Read the Docs
 
 
 ## isoSegDenoise
@@ -18,7 +18,7 @@ Because the deepcell / Mesmer package & segmentation model are licensed as non-c
 
 Typically, this program would be installed by *>>> pip install palmettobug* as this package will be a listed dependency of PalmettoBUG to be automatically installed with it. 
 
-However, isoSegDenoise can be installed separately from PalmettoBUG if needed -- once published on PyPI, installation should be as simple as:
+However, isoSegDenoise can be installed separately from PalmettoBUG if needed -- installation should be as simple as:
 
     > pip install isoSegDenoise[tensorflow]
 
@@ -38,7 +38,7 @@ Further, it will export masks or denoised images to subfolders of the _/masks_ f
 
 ## Documentation
 
-The documentation for the PalmettoBUG repository contains information about how to use this package & its GUI. Separate documentation may eventually be placed on readthedocs for this package on its own.
+The documentation for the PalmettoBUG repository contains information about how to use this package & its GUI. Separate documentation may eventually be placed on Read the Docs for this package on its own.
 
 ## LICENSE
 

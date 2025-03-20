@@ -10,6 +10,8 @@ Portions of the isosegdenoise/vendors/_apeerometiff.py file:
 isosegdenoise/vendors/_steinbock.py file
     Code copied / condensed / vendorized from the Steinbock (https://github.com/BodenmillerGroup/steinbock) package:
     Copyright (c) 2021 University of Zurich
+
+The GitLab / GitHub actions .yml files were modified from MIt-licensed templates
     
 
 MIT ("expat") license text:

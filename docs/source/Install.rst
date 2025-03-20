@@ -2,8 +2,8 @@ Installation of isoSegDenoise
 =============================
 
 With the default pip install of palmettobug, this package should be
-automatically installed as a dependency. However, if needed you manually
-do this with:
+automatically installed as a dependency. However, if you want to install this
+package on its own:
 
 >>> pip install isosegdenoise
 

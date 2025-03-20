@@ -1,4 +1,4 @@
-# made from a GitLab CI/CD template
+# made from a GitLab CI/CD template    (original license, before modification: MIT)
 
 default:
   image: python:3.10
