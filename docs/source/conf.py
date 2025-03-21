@@ -19,7 +19,7 @@ extensions = ['sphinx_rtd_theme',
 'sphinx.ext.napoleon',
 'autoapi.extension',
 ]
-autoapi_dirs = ['../../isoSegDenoise']
+autoapi_dirs = ['../../isosegdenoise']
 
 
 templates_path = ['_templates']
