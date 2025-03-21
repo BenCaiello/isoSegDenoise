@@ -38,11 +38,11 @@ Further, it will export masks or denoised images to subfolders of the _/masks_ f
 
 ## Documentation
 
-The documentation for the PalmettoBUG repository contains information about how to use this package & its GUI. Separate documentation may eventually be placed on Read the Docs for this package on its own.
+The documentation for the PalmettoBUG repository contains information about how to use this package & its GUI. Separate documentation for this package on its own can be found at: https://isosegdenoise.readthedocs.io/ .
 
 ## LICENSE
 
-This repository is generally under the BSD-3 license -- as in, any original code is under this license. However, there is non-original code copied from other software packages, which remains under their source licenses -- meaning there are multiple licenses listed in the repository. See the individual license files for more information.
+This repository is, generally speaking, under the BSD-3 license -- as in, any original code is under this license. However, there is non-original code copied from other software packages, which remains under their source licenses -- meaning there are multiple licenses listed in the repository. See the individual license files for more information.
 
 **Warning! One of the critical softwares used by this package is the deepcell / Mesmer segmentation package & deep learning model: this is licensed under a non-commercial / academic use license! This makes its use more restricted than the rest of the code in this repository!** Additionally, many cellpose models were trained on datasets with similar non-commercial use restrictions -- even though cellpose itself does not have non-commerical restrictions for its use -- so the license for these models is subject to some uncertainty for commercial users.
 
