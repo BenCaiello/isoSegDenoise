@@ -11,7 +11,7 @@ Changes:
     -- Added another copy of the license below to directly above the omexmlClass.py code
     -- made necessary changes for the merging of the omeXMLClass.py with the main library file
     -- switch to defusedxml for xml parsing
-
+    -- add __all__ for auto-api control
 
 
 '''
@@ -54,7 +54,7 @@ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '''
 ###################### Begin copied code:
-
+__all__ = []
 
 from pathlib import Path
 from types import TracebackType

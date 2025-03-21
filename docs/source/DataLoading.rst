@@ -1,26 +1,34 @@
-Loading Data in isosegdenoise separately from palmettobug
+Loading Data in isoSegDenoise separately from PalmettoBUG
 =========================================================
 
 While the typical use of isosegdenoise is an a sub-program of
-palmettobug, the isosegdenoise GUI can be launched separately, and load
+PalmettoBUG, the isosegdenoise GUI can be launched separately, and also load
 data separately.
 
-Note: even though isosegdenoise can be used separately from palmettobug,
-it expects the data / directory structures created by palmettobug, and
+Note: even though isosegdenoise can be used separately from PalmettoBUG,
+it expects the data / directory structures created by PalmettoBUG, and
 does not perform these steps (such as converting MCDs 🡪 TIFFs in raw) on
-its own. Because of this, it is rare to even launch this program
-separately from palmettobug.
+its own. Because of this, it is rare to launch isoSegDenoise 
+separately from the PalmettoBUG interface.
 
-**Launch:**
+Launch:
+~~~~~~~
 
 In the terminal (usually miniconda prompt in the environment where
 isosegdenoise is installed), type:
 
 >>> segdenoise
 
-This will launch the program without loading any data automatically.
+This will launch the program automatically (without loading any data). 
+Tags can be added to this command to direct it to an existing PalmettoBUg-style 
+directory, and to provide the X (r1) and Y (r2) resolutions of the images:
 
-**Loading data:**
+>>> segdenoise -d "/Path/to/the/directory" -r1 1.0 -r2 1.0
+
+A command like this is also how PalmettoBUG launches iSD into a project.
+
+Loading data:
+~~~~~~~~~~~~~
 
 Once in the opening screen of the program:
 
@@ -33,23 +41,36 @@ of */images*) must be present when loading the directory. Other folders
 may or may not be present when you load the directory, but these are the
 minimum needed to do isosegdenoise functions.
 
-**Performing Denoising & Segmentation**
+.. note::
+   
+   isoSegDenoise does NOT perform the initial steps of converting MCD files to TIFF files
+   or setting up a panel file! It expects the panel file to already exist (whether made manually
+   of in PalmettoBUG), and the /images/ folder to already contain subfolders of TIFF files!
 
-|image1|\ Once the directory is loaded, then make sure the panel file is
-up to date and reflects your desired choices.
+Performing Denoising & Segmentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+|image1|
+
+Once the directory is loaded, make sure the panel file is
+up to date and reflects your desired choices. *It can be particularly
+easy to forget to set your segmentation markers when transitioning from PalmettoBUG,
+since you will not have needed to set those before launching iSD!*
 
 Then use the buttons in the upper right corner to launch pop-up windows
 in order to do the described functions. These pop-up windows ask for
 information like, *Which folder of images are you denoising? Which
 folder do you want to write the denoised images to? What parameters for
-the denoising algorithm?* Etc.
+the denoising algorithm?* Etc. 
+The set up and behaviour of the GUI for iSD is generally very similar 
+to PalmettoBUG's GUI behaviour (and much of the code was originally shared).
 
-If you click on a button and a windows doesn’t show up immediately, it
+If you click on a button and a window doesn’t show up immediately, it
 might be that the window opened behind other programs open on your
 computer. You can click the same button again as a shortcut to bring
-that window to the *front (as a rule, clicking again on a button in this
-program will not open an additional pop-up window for that function, but
-will try to bring any existing window for that function to the front)*.
+that window to the front *(as a rule, clicking a second time on a button in this
+program / PalmettoBUG will not open an additional pop-up window if the old window still exists, but
+instead will try to bring the existing window to the foreground on your screen)*.
 
 .. |A screenshot of a computer Description automatically generated| image:: media/image1.png
    :width: 6.5in

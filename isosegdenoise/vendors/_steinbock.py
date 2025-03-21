@@ -21,6 +21,8 @@ Edits:
 
 --> (2-6-25): also disconnected the MCD reading / panel functions, since this not handled by iSD, and removed assert statements
 
+--> __all__ = []  for auto-api control
+
 Reasons: disconnect the files listed above from all other modules of steinbock.
 
 Steinbock License:
@@ -47,6 +49,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
+__all__ = []
 
 import logging
 from os import PathLike

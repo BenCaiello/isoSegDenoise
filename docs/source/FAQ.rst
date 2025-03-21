@@ -14,5 +14,4 @@ computer process.
 **How to cite?**
 
 If you use this package in your work, please cite the PalmettoBUG paper
-**(add link and BibText once in preprint!!)** or this package’s github
-repository.
+(pending ... ) or this package’s github repository.

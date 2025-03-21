@@ -64,11 +64,15 @@ Modifications: 1). Code from the various deepcell packages has been combined int
                                     ##>>## 
 
                 to find lines / blocks of code with edits added for the PyTorch integration.  
+
+                3). add __all__ = []  to block auto-api from creating documentation for this
 '''
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+
+__all__ = []
 
 import os
 import numpy as np

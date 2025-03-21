@@ -1,10 +1,3 @@
-## Warning! This repository is still under development!
-
-final development steps: 
-    
-    1). Documentation --> this means editing and putting onto Read the Docs
-
-
 ## isoSegDenoise
 
 isoSegDenoise is a sister package, almost more of a plugin to the main PalmettoBUG package. However, it can theoretically be used as a fully independent program from PalmettoBUG.  
