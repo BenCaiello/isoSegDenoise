@@ -9,16 +9,19 @@ Because the deepcell / Mesmer package & segmentation model are licensed as non-c
 
 ## Installation
 
-Typically, this program would be installed by *>>> pip install palmettobug* as this package will be a listed dependency of PalmettoBUG to be automatically installed with it. 
+Installation should be as simple as:
 
-However, isoSegDenoise can be installed separately from PalmettoBUG if needed -- installation should be as simple as:
+    > pip install isosegdenoise
 
-    > pip install isoSegDenoise[tensorflow]
+If you do not want to use the original, tensorflow version of the DeepCell / Mesmer model. Instead a ONNX-converted version of that model will be used inside
+PyTorch. **If you do want the original tensorflow model, use the command:**
 
-This should be run in a clean, **Python 3.10** environment (this was developed mainly using conda as the environment manager).
+    > pip install isosegdenoise[tensorflow]
+
+For more information on the two models, see the documentation.
+
+These installation commands should be run in a clean, **Python 3.10** environment (this was developed mainly using conda as the environment manager).
 It should also be possible to install with *Python 3.9*, but 3.10 is recommended unless you have a reason not to.
-
-You can try using a onnx / PyTorch model version of the original tensorflow Mesmer model by omitting the [tensorflow] tag (this will not download tensorflow / keras into the environment, and when tensorflow is absent, isoSegDenoise will default to using the Torch model.)
 
 This program can then be launched -- entirely separately from PalmettoBUG -- by issuing the command:
 

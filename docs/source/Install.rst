@@ -1,45 +1,17 @@
 Installation of isoSegDenoise (iSD)
 ===================================
 
-With the default pip install of palmettobug, this package should be
-automatically installed as a dependency. However, if you want to install this
-package on its own:
+Installation should be very simple:
 
->>> pip install isosegdenoise
+   > pip install isosegdenoise
 
-GPU support
-~~~~~~~~~~~
+Or,
 
-On a windows 10 system, for a NVIDIA GPU, I was able to successfully
-install GPU support for isosegdenoise. Specifically, presuming you have
-successfully installed the NVIDIA driver for your GPU, you will need to:
+   > pip install isosegdenoise[tensorflow]
 
-   1). follow the recommended pip download on the PyTorch website:
-   `Start Locally \|
-   PyTorch <https://pytorch.org/get-started/locally/>`__ to get GPU
-   support for Cellpose functions.
-
-   2). Download the proper tensorflow & cuda packages for deepcell /
-   mesmer (listed are what worked for me):
-
-- >>> pip install tensorflow-gpu==2.8.4
-
-- >>> conda install cudnn=8.9.2.26
-
-- >>> conda install cudatoolkit=11.8.0
-
-- >>> conda install zlib-wapi
-
-*However, your mileage using these steps may vary in practice – GPU
-support was not thoroughly tested on a variety of computer systems or
-setups!*
-
-Do note that to get GPU support for isosegdenoise really means getting
-it configured for Cellpose and DeepCell/Mesmer packages (these are the
-only parts of the program that use a GPU), so you can also consult these
-package’s documentation in case they have information about configuring
-GPU support. Cellpose uses PyTorch, and the original version of Mesmer uses 
-tensorflow (see section below).
+The second command also installs tensorflow / keras, meaning that the original version of the Deepcell / Mesmer model will be used by default.
+Without tensorflow, the package will use a ONNX model (converted from the tensorflow model) within PyTorch to do Mesmer segmentation.  See more details 
+in the next section:
 
 Tensorflow vs. PyTorch Mesmer Model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,17 +21,45 @@ This was created using the tf2onnx package, and allows iSD / PyTorch to run Mesm
 tensorflow / keras, etc.
 
 **Why?** Not needing tensorflow can be convenient, both to save disk space and to also make the configuration of the GPU much simpler. 
-Further, the outdated tensorflow / keras versions required by iSD also creates a lot of securty warnings, so eliminating the need for these packages 
-altogether is useful for minimizing these warnings / vulnerabilities.
+Further, the outdated tensorflow / keras versions required by iSD also creates a lot of securty warnings on GitHub, so eliminating the need for these packages
+is useful for minimizing these warnings / vulnerabilities.
 
-Currently, by default, tensorflow & its dependencies are NOT installed if you install isoSegDenoise alone by the usual command
-(however, they ARE installed by PalmettoBUG by default! -- this might change in the future). The installation command can be altered to
-ensure that tensorflow / keras are installed as well:
+If tensorflow is not in the environment with iSD, then iSD will use the ONNX / PyTorch model -- but if it is present then the program will try to use 
+tensorflow to run the Mesmer model. 
 
->>> pip install isosegdenoise[tensorflow]
+.. warning:: 
+   
+   The ONNX / PyTorch model should be very similar, but NOT copmletely identical to the original tensorflow version of Mesmer.
+   It also has not yet been thoroughly benchmarked vs. the original model, so use its greater convenience at your own risk!
 
-If tensorflow is not in the environment with iSD, then iSD will use the ONNX / PyTorch model. **Warning! the ONNX / PyTorch model should be very similar, but NOT 
-identical to the original tensorflow version of Mesmer!**
+GPU support
+~~~~~~~~~~~
+
+.. important::
+
+   Your mileage using the steps I list here may vary! GPU support was not thoroughly tested on a variety of computer systems or setups, only
+   on Windows operating systems where I did development.
+
+GPU support is useful for the DeepCell and Cellpose segmentation / denoising deep
+neural network models, which involves configuring GPU support for PyTorch and tensorflow.
+If you chose to use the ONNX / PyTorch model for DeepCell / Mesmer (see installation section) 
+instead of the original tensorflow version of Mesmer, then you only need to configure GPU support for
+PyTorch.
+
+**PyTorch GPU support:**
+
+PyTorch support for GPUs is fairly straightforward -- follow the recommended pip download on the PyTorch website:
+`Start Locally |PyTorch <https://pytorch.org/get-started/locally/>`__
+
+**Tensorflow GPU support**
+
+This is slightly more complicated, as you will need to install tensorflow-gpu, cudnn, cudatoolkit, and zlib-wapi packages.
+Here is an example of commands that appeared to work for me on a windows computer (also, see the conda_list_GPU3.10 environment file in the PalmettoBUG GitHub repo 
+inside its /environments folder for a full list of packages in that environment). 
+ > pip install tensorflow-gpu==2.8.4
+ > conda install cudnn=8.9.*
+ > conda install cudatoolkit=11.8.0
+ > conda install zlib-wapi
 
 Licensing information:
 ~~~~~~~~~~~~~~~~~~~~~~
