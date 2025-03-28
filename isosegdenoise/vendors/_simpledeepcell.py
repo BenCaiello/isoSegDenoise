@@ -67,12 +67,11 @@ Modifications: 1). Code from the various deepcell packages has been combined int
 
                 3). add __all__ = []  to block auto-api from creating documentation for this
 '''
+# ruff: noqa
 
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-
-__all__ = []
 
 import os
 import numpy as np
@@ -95,7 +94,6 @@ import logging
 import warnings
 
 import timeit
-import numpy as np
 
 import cv2
 from scipy.signal import windows
@@ -107,6 +105,8 @@ from skimage.measure import label, regionprops
 from skimage.exposure import equalize_adapthist, rescale_intensity
 from skimage.morphology import disk, ball, square, cube, dilation, remove_small_objects, h_maxima, remove_small_holes
 from skimage.segmentation import relabel_sequential, watershed, find_boundaries
+
+__all__ = []
 
 def erode_edges(mask, erosion_width):
     """Erode edge of objects to prevent them from touching

@@ -263,7 +263,7 @@ class ImageProcessing:
         else:
             img_files =  sorted(Path(image_folder).rglob(f"*{image_list[0]}.tiff"))  # *** 
         
-        if (re_do == False) and (image_list == ["ALL"]): 
+        if (re_do is False) and (image_list == ["ALL"]): 
             new_list = []
             for i in img_files:
                 path = str(i).replace("\\", '/')
@@ -654,7 +654,7 @@ class _CellposeExecutor:
                 print(f"{img} has been Segmented with {mask_numb} masks in the image!") 
                 return "".join([output_folder, "/", img])
         else:
-            if (os.listdir(image_folder) == os.listdir(output_folder)) and (re_do == False):
+            if (os.listdir(image_folder) == os.listdir(output_folder)) and (re_do is False):
                 if _in_gui:
                     tk.messagebox.showwarning("Warning!", message = "All images already have masks in the output folder!" 
                                                 "Check redo option to redo segmentation, if desired") 
@@ -662,7 +662,7 @@ class _CellposeExecutor:
                     print("All images already have masks in the output folder! Check redo option to redo segmentation, if desired")  
                 return  
             for image in os.listdir(image_folder):
-                if (image in os.listdir(output_folder)) and (re_do == False):    ## don't re-segment images, unless re_do is set to True
+                if (image in os.listdir(output_folder)) and (re_do is False):    ## don't re-segment images, unless re_do is set to True
                     pass              
                 else:
                     img_array, metadata = self._read_OME_tiff("".join([image_folder, "/", image]))

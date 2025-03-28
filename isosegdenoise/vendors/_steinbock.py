@@ -23,6 +23,8 @@ Edits:
 
 --> __all__ = []  for auto-api control
 
+--> 3-28-25: commented-out / removed more unused imports (ruff linter), then added noqa line to pause any future linting (for now)
+
 Reasons: disconnect the files listed above from all other modules of steinbock.
 
 Steinbock License:
@@ -49,19 +51,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 '''
+# ruff: noqa
+
 __all__ = []
 
 import logging
 from os import PathLike
 import numpy as np
-import pandas as pd
+#import pandas as pd
 
 import tifffile as tf
 
 from pathlib import Path
 from enum import Enum
 from functools import partial
-from zipfile import ZipFile
+#from zipfile import ZipFile
 #from tempfile import TemporaryDirectory
 
 #from readimc import MCDFile
@@ -75,9 +79,7 @@ from typing import (
     Union,
     Mapping,
     Protocol,
-    Any,
-    List
-
+    Any
 )
 
 __all__ = []

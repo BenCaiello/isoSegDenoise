@@ -52,7 +52,7 @@ def run_GUI(directory: str = directory_in, resolutions: tuple[float, float] = re
             self.cellpose = cellpose
 
         def filter(self, record):
-            if (self.cellpose == True) & (record.levelno == 20):    ## block info messages from cellpose (message spam during normal operation)
+            if (self.cellpose is True) & (record.levelno == 20):    ## block info messages from cellpose (message spam during normal operation)
                 return False
 
     cellposesilencer1 = logging.getLogger("cellpose.models")

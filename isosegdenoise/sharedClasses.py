@@ -70,7 +70,7 @@ def folder_checker(foldername: str,
     '''
     foldername = foldername.strip()
     if foldername == "":
-        tk.messagebox.showwarning("Warning!", message = f"You must specifiy a folder name!")
+        tk.messagebox.showwarning("Warning!", message = "You must specifiy a folder name!")
         if GUI_object is not None:
             GUI_object.focus()
         return True   ## if an error occurs trigger abort the parent process
@@ -357,7 +357,7 @@ class DirectoryDisplay(ctk.CTkFrame):
         self.option_menu.configure(state = 'disabled', text_color_disabled = self.option_menu.cget("text_color"))
         self.button_list = []
         self.list_dir()
-        if delete_remove == False:
+        if delete_remove is False:
             self.delete_button = ctk.CTkButton(master = self, text = "Enter Delete Mode", command  = self.switch_deleter)
             self.delete_button.grid(column = 0, row = 2, padx = 1, pady = 3)
 

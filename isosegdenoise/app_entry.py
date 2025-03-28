@@ -134,12 +134,6 @@ class EntryPoint(ctk.CTkFrame):
                                    command = lambda: self.img_entry_func("", from_mcds = True))
         button_MCD.grid(column = 1, row = 1, padx = 10, pady = 10)
 
-        ## widget set for the images-only entry point
-        button_img = ctk.CTkButton(master = self, 
-                                   text = "Choose Image directory and begin", 
-                                   command = lambda: self.img_entry_func("", from_mcds = False))
-        #button_img.grid(column = 1, row = 2, padx = 10, pady = 10)
-
         ## The widget for the entry of the resolution of the images (can ignore for CyTOF / solution mode analyses)
         self.X_Y_entry = self.X_Y_res_frame(self)
         self.X_Y_entry.grid(column = 1, row = 4, padx = 10, pady = 10)
