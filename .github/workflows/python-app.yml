@@ -33,7 +33,7 @@ jobs:
         uv install pytest ruff 
         uv install .[tensorflow]
     #   pip install flake8
-    #- name: Lint with flake8
+    - name: Lint with ruff
       run: |
         uvx ruff check
     - name: Test with pytest
