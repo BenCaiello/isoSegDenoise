@@ -1,10 +1,10 @@
 import sys
 
-from isosegdenoise import processing_class as pc
 import tifffile as tf
 import numpy as np
 import pandas as pd
 import tempfile as tmp
+from isosegdenoise import processing_class as pc
 
 
 homedir = __file__.replace("\\","/")
