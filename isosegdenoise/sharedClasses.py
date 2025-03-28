@@ -128,9 +128,10 @@ def overwrite_approval(full_path: str, file_or_folder: str = "file", custom_mess
         return True       ### if the path does not exist, does not contain files (and is a folder), or if the user says "yes", proceed with the step
 
 ## These imports, etc. also from singleton package (Copyright (c) 2019, James Roeder, MIT License):
-from collections import defaultdict
-from typing import Any, ClassVar, MutableMapping, Type, TypeVar
-T = TypeVar("T")  # noqa: WPS111
+# Edited 3-28-25 to change noqa lines for ruff
+from collections import defaultdict       # ruff: noqa: E402
+from typing import Any, ClassVar, MutableMapping, Type, TypeVar # ruff: noqa: E402
+T = TypeVar("T")  
 
 class CtkSingletonWindow(type):
     '''
