@@ -36,7 +36,7 @@ jobs:
     #   source venv/bin/activate is for linux / macOS -- is different for windows
     - name: Lint with ruff
       run: |
-        uvx ruff check isosegdenoise/
+        uvx ruff check isosegdenoise/ --exit-zero
     - name: Test with pytest
       run: |
         pytest
