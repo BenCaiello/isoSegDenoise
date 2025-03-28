@@ -33,7 +33,7 @@ jobs:
         uv venv
         uv pip install pytest ruff 
         uv pip install .      
-        uv pip install tensorflow==2.8.* tensorflow-addons>=0.16.1 keras<3.0.0
+    #    uv pip install tensorflow==2.8.* tensorflow-addons>=0.16.1 keras<3.0.0
     #   uv is not compatible with the current setup of pyproject.toml (particularly for the [tensorflow] tag). 
     - name: Lint with ruff
       run: |
