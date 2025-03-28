@@ -129,8 +129,8 @@ def overwrite_approval(full_path: str, file_or_folder: str = "file", custom_mess
 
 ## These imports, etc. also from singleton package (Copyright (c) 2019, James Roeder, MIT License):
 # Edited 3-28-25 to change noqa lines for ruff
-from collections import defaultdict       # ruff: noqa: E402
-from typing import Any, ClassVar, MutableMapping, Type, TypeVar # ruff: noqa: E402
+from collections import defaultdict       # noqa: E402
+from typing import Any, ClassVar, MutableMapping, Type, TypeVar # noqa: E402
 T = TypeVar("T")  
 
 class CtkSingletonWindow(type):

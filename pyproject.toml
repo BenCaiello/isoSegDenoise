@@ -42,3 +42,6 @@ segdenoise = 'isosegdenoise.Executable:run_GUI'
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+extend-exclude = "*.onnx"
