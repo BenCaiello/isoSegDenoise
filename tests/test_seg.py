@@ -1,5 +1,12 @@
 import sys
 
+from isosegdenoise import processing_class as pc
+import tifffile as tf
+import numpy as np
+import pandas as pd
+import tempfile as tmp
+
+
 homedir = __file__.replace("\\","/")
 homedir = homedir[:(homedir.rfind("/"))]
 homedir = homedir[:(homedir.rfind("/"))]
@@ -7,11 +14,6 @@ homedir = homedir[:(homedir.rfind("/"))]
 ### homedir = /path/to/project/isosegdenoise   -- as in, the folder name passed to sys.path.append is always 'isosegdenoise'
 sys.path.append(homedir)
 
-from isosegdenoise import processing_class as pc
-import tifffile as tf
-import numpy as np
-import pandas as pd
-import tempfile as tmp
 
 fake_panel = pd.DataFrame()
 fake_panel['keep'] = [1,1]
@@ -89,7 +91,7 @@ if __name__ == "__main__":
     for i,ii in zip(tests, test_names):
         try:
             i()
-        except AssertionError as e:
+        except AssertionError:
             test_fail.append(ii)
     if len(test_fail) == 0:
         print("Passed all tests!")

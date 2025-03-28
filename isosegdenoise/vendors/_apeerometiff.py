@@ -1,3 +1,4 @@
+# ruff: noqa
 '''
 This file is the "unhooked" version of the apeer-ometiff-library package: https://github.com/apeer-micro/apeer-ometiff-library
 

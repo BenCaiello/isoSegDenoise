@@ -67,6 +67,7 @@ def imc_entrypoint(directory: Union[None, str] = None,
     try:
         Experiment_obj = ImageProcessing(directory, resolutions = resolutions)
     except Exception as e:
+        print(e)
         if from_mcds:
             if _in_gui:
                 messagebox.showwarning("Warning!", message = "Are you sure there are .mcd files in the 'raw' folder of your directory? \n" 
@@ -788,7 +789,7 @@ class _simpleDenoiseExecutor:
             self.sigma_range = sigma_range
             
         if pre_cal is False:
-            calibrate = self._calibrate_on_img(image_path = image_path, channel = channel, sigma_range = sigma_range)
+            self._calibrate_on_img(image_path = image_path, channel = channel, sigma_range = sigma_range)
 
             new_sigmas = [self.sigma_cal - 0.25, self.sigma_cal, self.sigma_cal + 0.25]
             new_sigmas = [i for i in new_sigmas if i > 0]
@@ -828,7 +829,7 @@ class _simpleDenoiseExecutor:
         output_list = ["".join([output_folder_path,"/",i]) for i in os.listdir(folder_path)]
         if pre_cal is False:
             cal_path =  image_list[cal_img]
-            calibrate = self._calibrate_on_img(image_path = cal_path, channel = channel, sigma_range = sigma_range)
+            self._calibrate_on_img(image_path = cal_path, channel = channel, sigma_range = sigma_range)
             new_sigmas = [self.sigma_cal - 0.5, self.sigma_cal - 0.25, self.sigma_cal, self.sigma_cal + 0.25, self.sigma_cal + 0.5]
             new_sigmas = [i for i in new_sigmas if i > 0]
         else:
