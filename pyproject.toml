@@ -44,4 +44,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
-extend-exclude = ["*.onnx"]
+extend-exclude = [".onnx"]
