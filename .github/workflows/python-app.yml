@@ -29,8 +29,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install uv
+        pip install uv pytest
         uv venv
+        .venv/Scripts/activate
         uv pip install .      
     #    uv pip install tensorflow==2.8.* tensorflow-addons>=0.16.1 keras<3.0.0
     #   uv is not compatible with the current setup of pyproject.toml (particularly for the [tensorflow] tag). For some reason the command above also creates an error
@@ -39,7 +40,5 @@ jobs:
         uvx ruff check isosegdenoise/
     - name: Test with pytest
       run: |
-        uv pip install pytest
-        uv run pytest
-    #    pytest
+        pytest
     #   python /tests/test_seg.py
