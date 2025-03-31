@@ -47,6 +47,10 @@ This repository is, generally speaking, under the BSD-3 license -- as in, any or
 
 **Warning! One of the critical softwares used by this package is the deepcell / Mesmer segmentation package & deep learning model: this is licensed under a non-commercial / academic use license! This makes its use more restricted than the rest of the code in this repository!** Additionally, many cellpose models were trained on datasets with similar non-commercial use restrictions -- even though cellpose itself does not have non-commerical restrictions for its use -- so the license for these models is subject to some uncertainty for commercial users.
 
+**vendored packages**
+
+I copied large portions of the code of some packages (Specifically: steinbock, deepcell-tf & deepcell toolbox, and apeer-ometiff-library) directly into new, singular python files, often only keeping the code needed for the limited functions that I called from the package. This also entailed some limited changes to the original code (such as removing duplicate imports). See the .py files in the isosegdenose/vendors folder for more details & links to the original packages' GitHub repositories.
+
 ## Citation
 
 A citation would be appreciated you use this package (on its own) for your analysis, software package, or paper. 
