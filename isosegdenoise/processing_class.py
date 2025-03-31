@@ -667,7 +667,7 @@ class _CellposeExecutor:
                 else:
                     img_array, metadata = self._read_OME_tiff("".join([image_folder, "/", image]))
                     img_array = self._normalize_channels_and_merge(img_array)
-                    print(img_array.shape)
+                    # print(img_array.shape)
                     masks, flows, styles = initialized_model.eval(img_array, 
                                                                     channels = [2,1], 
                                                                     flow_threshold = flow_threshold, 
