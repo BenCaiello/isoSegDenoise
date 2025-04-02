@@ -31,7 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install uv pytest
         uv pip install . --system    
-        uv pip install "tensorflow==2.13.*"--system
+        uv pip install "tensorflow==2.13.*" --system
         uv pip install "tensorflow-addons>=0.16.1" --system 
         uv pip install "keras<3.0.0" --system
     #   uv is not compatible with the current setup of pyproject.toml (particularly for the [tensorflow] tag). 
