@@ -30,14 +30,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install uv pytest
-        uv pip install . --system    
-    #    uv pip install tensorflow==2.8.* tensorflow-addons>=0.16.1 keras<3.0.0
-    #   uv is not compatible with the current setup of pyproject.toml (particularly for the [tensorflow] tag). For some reason the command above also creates an error
-    #   source venv/bin/activate is for linux / macOS -- is different for windows
+        uv pip install . tensorflow==2.8.* tensorflow-addons>=0.16.1 keras<3.0.0 --system    
+    #   uv is not compatible with the current setup of pyproject.toml (particularly for the [tensorflow] tag). 
     - name: Lint with ruff
       run: |
         uvx ruff check isosegdenoise/ --exit-zero
     - name: Test with pytest
       run: |
         pytest
-    #   python /tests/test_seg.py
