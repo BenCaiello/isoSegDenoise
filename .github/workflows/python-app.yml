@@ -34,6 +34,7 @@ jobs:
         uv pip install "tensorflow==2.13.*" --system
         uv pip install "tensorflow-addons>=0.16.1" --system 
         uv pip install "keras<3.0.0" --system
+        uv pip install "typing-extensions==4.13.0" --system
     #   uv is not compatible with the current setup of pyproject.toml (particularly for the [tensorflow] tag). 
     - name: Lint with ruff
       run: |
