@@ -31,6 +31,8 @@ optional = true
 tensorflow = ">=2.8.0,<=2.13.*"
 tensorflow-addons = ">=0.16.1"
 keras = "<3.0.0"
+# using this optional dependency group likely restrictions other packages more -- and the python version to <3.11, >=3.9
+# list additional restrictions here as I encounter them:
 
 [tool.poetry.scripts]
 segdenoise = 'isosegdenoise.Executable:run_GUI'
