@@ -15,7 +15,7 @@ permissions:
   contents: read
 
 jobs:
-  build3.10:
+  build3_10:
 
     runs-on: ubuntu-latest
 
@@ -43,7 +43,7 @@ jobs:
       run: |
         pytest
 
-  build3.11:
+  build3_11:
 
     runs-on: ubuntu-latest
 
