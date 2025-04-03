@@ -73,7 +73,7 @@ class App(ctk.CTk):
 
         if directory is not None:
             file_list = os.listdir(directory + "/raw")
-            if file_list[0][-1] == "f":    ## aka, tiff files...
+            if file_list[0][-1] == "f":    ## aka, tiff or tif files...
                 self.entrypoint.img_entry_func(directory = directory, resolutions = resolutions, from_mcds = False)
             else:
                 self.entrypoint.img_entry_func(directory = directory, resolutions = resolutions, from_mcds = True)

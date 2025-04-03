@@ -123,7 +123,7 @@ def mask_expand(distance: int,
     if not os.path.exists(output_directory):
         os.mkdir(output_directory)
 
-    for i in os.listdir(image_source):
+    for i in sorted(os.listdir(image_source)):
         read_dir = "".join([image_source, "/", i])
         out_dir = "".join([output_directory, "/", i])
         read_in_mask = tf.imread(read_dir)
@@ -212,7 +212,7 @@ class ImageProcessing:
                 read_dir = "".join([self.directory_object.main, "/panel.csv"])
                 self.panel = pd.read_csv(read_dir)     ## read in panel file if it already exists 
             except FileNotFoundError:
-                image_list = os.listdir(self.directory_object.main + "/raw")
+                image_list = sorted(os.listdir(self.directory_object.main + "/raw"))
                 reader_string = "".join([self.directory_object.main, "/raw/", image_list[0]])
                 tiff_file1 = tf.imread(reader_string)
                 channel_list = [i for i in range(tiff_file1.shape[0])]
@@ -559,7 +559,7 @@ class _CellposeDenoiseExecutor:
             self._write_OME_tiff(metadata, image, output_path)
             print(f'{img} denoising has been completed!')
         else:                      ### if a specific image name is not given, denoise the entire directory 
-            for i in os.listdir(img_directory):
+            for i in sorted(os.listdir(img_directory)):
                 img_path = "".join([img_directory, "/", i])
                 out_path = "".join([ouput_directory, "/", i])
                 image, metadata = self._read_OME_tiff(img_path)
@@ -654,14 +654,14 @@ class _CellposeExecutor:
                 print(f"{img} has been Segmented with {mask_numb} masks in the image!") 
                 return "".join([output_folder, "/", img])
         else:
-            if (os.listdir(image_folder) == os.listdir(output_folder)) and (re_do is False):
+            if (sorted(os.listdir(image_folder)) == sorted(os.listdir(output_folder))) and (re_do is False):
                 if _in_gui:
                     tk.messagebox.showwarning("Warning!", message = "All images already have masks in the output folder!" 
                                                 "Check redo option to redo segmentation, if desired") 
                 else:
                     print("All images already have masks in the output folder! Check redo option to redo segmentation, if desired")  
                 return  
-            for image in os.listdir(image_folder):
+            for image in sorted(os.listdir(image_folder)):
                 if (image in os.listdir(output_folder)) and (re_do is False):    ## don't re-segment images, unless re_do is set to True
                     pass              
                 else:
@@ -825,8 +825,8 @@ class _simpleDenoiseExecutor:
                 sigma_range = [i for i in sigma_range if i > 0]
             self.sigma_range = sigma_range
             
-        image_list = ["".join([folder_path,"/",i]) for i in os.listdir(folder_path)]
-        output_list = ["".join([output_folder_path,"/",i]) for i in os.listdir(folder_path)]
+        image_list = ["".join([folder_path,"/",i]) for i in sorted(os.listdir(folder_path))]
+        output_list = ["".join([output_folder_path,"/",i]) for i in sorted(os.listdir(folder_path))]
         if pre_cal is False:
             cal_path =  image_list[cal_img]
             self._calibrate_on_img(image_path = cal_path, channel = channel, sigma_range = sigma_range)

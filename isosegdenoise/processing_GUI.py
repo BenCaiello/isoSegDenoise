@@ -227,7 +227,7 @@ class Expander_window(ctk.CTkToplevel, metaclass = CtkSingletonWindow):
         label_8.grid(column = 0, row = 1)
 
         def refresh3(enter = ""):
-            self.image_folders = os.listdir(self.master.Experiment_object.directory_object.masks_dir)
+            self.image_folders = sorted(os.listdir(self.master.Experiment_object.directory_object.masks_dir))
             self.image_folder.configure(values = self.image_folders)
 
         self.image_folder = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = ""))
@@ -291,7 +291,7 @@ class SimpleDenoiseWindow(ctk.CTkToplevel, metaclass = CtkSingletonWindow):
         label_8.grid(column = 0, row = 5)
 
         def refresh5b(enter = ""):
-            self.image_folders = os.listdir(self.master.Experiment_object.directory_object.img_dir)
+            self.image_folders = sorted(os.listdir(self.master.Experiment_object.directory_object.img_dir))
             self.image_folder.configure(values = self.image_folders)
 
         self.image_folder = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = "img"))
@@ -302,7 +302,7 @@ class SimpleDenoiseWindow(ctk.CTkToplevel, metaclass = CtkSingletonWindow):
         label8b.grid(column = 0, row = 6)
 
         def refresh5c(enter = ""):
-            self.images = [""] + os.listdir(self.master.Experiment_object.directory_object.img_dir + "/" + self.image_folder.get())
+            self.images = [""] + sorted(os.listdir(self.master.Experiment_object.directory_object.img_dir + "/" + self.image_folder.get()))
             self.single_image.configure(values = self.images)
 
         self.single_image = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = ""))
@@ -446,7 +446,7 @@ class CellPoseDenoiseWindow(ctk.CTkToplevel, metaclass = CtkSingletonWindow):
         label_8.grid(column = 0, row = 5)
 
         def refresh5(enter = ""):
-            self.image_folders = os.listdir(self.master.Experiment_object.directory_object.img_dir)
+            self.image_folders = sorted(os.listdir(self.master.Experiment_object.directory_object.img_dir))
             self.image_folder.configure(values = self.image_folders)
 
         self.image_folder = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = "img"))
@@ -457,7 +457,7 @@ class CellPoseDenoiseWindow(ctk.CTkToplevel, metaclass = CtkSingletonWindow):
         label8b.grid(column = 0, row = 6)
 
         def refresh5c(enter = ""):
-            self.images = [""] + os.listdir(self.master.Experiment_object.directory_object.img_dir + "/" + self.image_folder.get())
+            self.images = [""] + sorted(os.listdir(self.master.Experiment_object.directory_object.img_dir + "/" + self.image_folder.get()))
             self.single_image.configure(values = self.images)
 
         self.single_image = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = ""))
@@ -640,7 +640,7 @@ class CellPoseSegmentationWindow(ctk.CTkToplevel, metaclass = CtkSingletonWindow
         label_8.grid(column = 0, row = 6)
 
         def refresh6(enter = ""):
-            self.image_folders = os.listdir(self.master.Experiment_object.directory_object.img_dir)
+            self.image_folders = sorted(os.listdir(self.master.Experiment_object.directory_object.img_dir))
             self.image_folder.configure(values = self.image_folders)
         self.image_folder = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = "img"))
         self.image_folder.grid(column = 1, row = 6, padx = 5, pady = 5)
@@ -650,7 +650,7 @@ class CellPoseSegmentationWindow(ctk.CTkToplevel, metaclass = CtkSingletonWindow
         label_6.grid(column = 0, row = 7)
 
         def refresh7(enter = ""):
-            self.image_options = ["ALL"] + os.listdir(self.master.Experiment_object.directory_object.img_dir +"/" + self.image_folder.get())
+            self.image_options = ["ALL"] + sorted(os.listdir(self.master.Experiment_object.directory_object.img_dir +"/" + self.image_folder.get()))
             self.image_to_segment.configure(values = self.image_options)
 
         self.image_to_segment = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = "ALL"))
@@ -774,7 +774,7 @@ class DeepCell_window(ctk.CTkToplevel, metaclass = CtkSingletonWindow):
 
 
         def refresh8(enter = ""):
-            self.image_folders = os.listdir(self.master.Experiment_object.directory_object.img_dir)
+            self.image_folders = sorted(os.listdir(self.master.Experiment_object.directory_object.img_dir))
             self.image_folder.configure(values = self.image_folders)
 
         self.image_folder = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = "img"))
@@ -785,7 +785,7 @@ class DeepCell_window(ctk.CTkToplevel, metaclass = CtkSingletonWindow):
         label_6.grid(column = 0, row = 2)
 
         def refresh9(enter = ""):
-            self.image_options = ["ALL"] + os.listdir(self.master.Experiment_object.directory_object.img_dir + "/" + self.image_folder.get())
+            self.image_options = ["ALL"] + sorted(os.listdir(self.master.Experiment_object.directory_object.img_dir + "/" + self.image_folder.get()))
             self.image_to_segment.configure(values = self.image_options)
 
         self.image_to_segment = ctk.CTkOptionMenu(self, values = [""], variable = ctk.StringVar(value = "ALL"))
