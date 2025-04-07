@@ -41,7 +41,7 @@ jobs:
         uvx ruff check isosegdenoise/ --exit-zero
     - name: Test with pytest
       run: |
-        pytest -p pytest_cov --cov=isosegdenoise tests/
+        python -m pytest -p pytest_cov --cov=isosegdenoise tests/
 
 #  build3_11:
 #
