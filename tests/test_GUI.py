@@ -14,11 +14,13 @@ np.random.default_rng(42)
 
 fake_proj = homedir + "/fake_proj"
 os.mkdir(fake_proj)
-raw = fake_proj + "/raw"
-os.mkdir(raw)
+images = fake_proj + "/images"
+os.mkdir(images)
+img = images + "/img"
+os.mkdir(img)
 
 fake_image = np.random.rand(10,400,500)
-tf.imwrite(raw + "/fake.ome.tiff", fake_image)
+tf.imwrite(img + "/fake.ome.tiff", fake_image)
 
 fake_channels = ["1","2","3","4","5","A","B","c","D","EFG"]
 fake_panel = pd.DataFrame()
