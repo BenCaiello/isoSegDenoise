@@ -11,6 +11,8 @@ homedir = __file__.replace("\\","/")
 homedir = homedir[:(homedir.rfind("/"))]
 homedir = homedir[:(homedir.rfind("/"))]
 
+np.random.default_rng(42)
+
 ### homedir = /path/to/project/isosegdenoise   -- as in, the folder name passed to sys.path.append is always 'isosegdenoise'
 # sys.path.append(homedir)
 
