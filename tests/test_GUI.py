@@ -21,7 +21,7 @@ fake_image = np.random.rand([10,400,500]) * np.random.rand(10)
 tf.imwrite(raw + "/fake.ome.tiff", fake_image)
 
 fake_channels = ["1","2","3","4","5","A","B","c","D","EFG"]
-fake panel = pd.DataFrame()
+fake_panel = pd.DataFrame()
 fake_panel['channel'] = fake_channels
 fake_panel['name'] = fake_channels
 fake_panel['keep'] = [0,0,1,1,1,1,1,1,1,1]
