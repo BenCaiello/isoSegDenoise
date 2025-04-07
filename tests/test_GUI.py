@@ -17,7 +17,7 @@ os.mkdir(fake_proj)
 raw = fake_proj + "/raw"
 os.mkdir(raw)
 
-fake_image = np.random.rand(10,400,500) * np.random.rand(10)
+fake_image = np.random.rand(10,400,500)
 tf.imwrite(raw + "/fake.ome.tiff", fake_image)
 
 fake_channels = ["1","2","3","4","5","A","B","c","D","EFG"]
