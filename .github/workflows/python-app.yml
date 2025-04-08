@@ -44,7 +44,7 @@ jobs:
         python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml tests/
 
     - name: Add code coverage
-    - uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v5
       with:
         use_oidc: true
 
