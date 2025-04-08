@@ -41,7 +41,13 @@ jobs:
         uvx ruff check isosegdenoise/ --exit-zero
     - name: Test with pytest
       run: |
-        python -m pytest -p pytest_cov --cov=isosegdenoise tests/
+        python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml tests/
+
+    - name: Codecov
+    - uses: actions/checkout@v4
+      uses: codecov/codecov-action@v5
+      with:
+        use_oidc: true
 
 #  build3_11:
 #
