@@ -45,8 +45,6 @@ jobs:
 
     - name: Add code coverage
       uses: codecov/codecov-action@v5
-      with:
-        use_oidc: true
 
 #  build3_11:
 #
