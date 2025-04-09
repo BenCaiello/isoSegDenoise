@@ -18,6 +18,7 @@ release = '0.1.0'
 extensions = ['sphinx_rtd_theme',
 'sphinx.ext.napoleon',
 'autoapi.extension',
+'nbsphinx'
 ]
 autoapi_dirs = ['../../isosegdenoise']
 

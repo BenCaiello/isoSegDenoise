@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Core Imaging Pipeline Tutorials
-===============================
+Notebook Index
+==============
 
 These notebooks show the image processing steps specific to isoSegDenoise.
 
