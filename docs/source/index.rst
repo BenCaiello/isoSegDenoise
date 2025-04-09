@@ -16,5 +16,11 @@ isosegdenoise documentation
 
 .. toctree::
    :maxdepth: 2
+   :caption: notebook tutorials
+
+   notebooks/index.rst
+
+.. toctree::
+   :maxdepth: 2
    :caption: API
 
