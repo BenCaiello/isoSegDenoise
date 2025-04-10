@@ -252,7 +252,7 @@ def create_segmentation_stack(
 # deepcell_available = find_spec("deepcell") is not None
 def _mesmer_application(model=None, is_torch = None): ##>>## added is_torch
     #from deepcell.applications import Mesmer
-    from ._simpledeepcell import Mesmer # type: ignore
+    from ._deepcell import Mesmer # type: ignore
 
     app = Mesmer(model=model, is_torch = is_torch) ##>>## added is_torch
 
