@@ -6,7 +6,7 @@
 ![PyPI - Version](https://img.shields.io/pypi/v/isosegdenoise)
 ![Read the Docs](https://img.shields.io/readthedocs/isoSegDenoise)
 
-Badges made in: https://shields.io/
+Badges, except coverage, made in: https://shields.io/
 
 ## Welcome!
 
