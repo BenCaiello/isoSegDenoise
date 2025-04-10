@@ -3,7 +3,11 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/BenCaiello/isoSegDenoise/python-app.yml) 
 ![Pepy Total Downloads](https://img.shields.io/pepy/dt/isosegdenoise)
 ![PyPI - Version](https://img.shields.io/pypi/v/isosegdenoise)
+![Read the Docs](https://img.shields.io/readthedocs/isoSegDenoise)
 
+Badges made in: https://shields.io/
+
+## Welcome!
 
 isoSegDenoise is a sister package, almost more of a plugin to the main PalmettoBUG package. However, it can theoretically be used as a fully independent program from PalmettoBUG.  
 It performs denoising and deepcell / cellpose segmentation steps within a PalmettoBUG-style directory structure. 

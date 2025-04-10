@@ -22,6 +22,11 @@ extensions = ['sphinx_rtd_theme',
 ]
 autoapi_dirs = ['../../isosegdenoise']
 
+autoapi_ignore = ['*migrations*',  ## default of autoapi_ignore
+                '*entry*',
+                '*GUI*',
+                '*vendors*']
+
 
 templates_path = ['_templates']
 exclude_patterns = []
