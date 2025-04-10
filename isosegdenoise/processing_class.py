@@ -3,18 +3,18 @@ This module contains the back-end / image processing classes and functions that 
 Particularly the ImageProcessing class and its subclasses handles most of these functions. This is also the only important module
 for the non-GUI API of isoSegDenoise, and the only module that call to the _steinbock.py module. 
 
-Portions of this file (functions marked with::
+Portions of this file (    functions marked with a comment -- not visible in API docs, only the file itself:
 
-    >>>> # ****stein_derived (notes)) 
+    >>>> # ****stein_derived (notes)             ) 
 
 are derivative / partially copy&paste with modification from the steinbock package (Copyright University of Zurich, 2021, MIT license)
 
     --> see charedClasses or steinbock_for_deepcell_alone for a full copy of the MIt license & copryight holder / date for steinbock
 
-Additionally, the assumed directory structure and panel file are derived from those strucutres/files from steinbock
+Additionally, the assumed directory structure and panel file are derived from those structures/files from steinbock
 
 The simple denoise method here is a self-made algorithm, although it was made with the assistance of the skimage documentation.
-(probably not genuinely / "legally" considered "derivative" of those doc files, but the skimage doc files are: Copyright: 2009-2022 the scikit-image 
+(probably not genuinely / legally considered "derivative" of those doc files, but the skimage doc files are: Copyright: 2009-2022 the scikit-image 
 team BSD-3 licensed, see the licenses_of_packages_derived_from.txt file in isoSegDenoise package /Assets folder, or see skimage package for more information)
 '''
 import tkinter as tk

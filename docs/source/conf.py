@@ -25,7 +25,8 @@ autoapi_dirs = ['../../isosegdenoise']
 autoapi_ignore = ['*migrations*',  ## default of autoapi_ignore
                 '*entry*',
                 '*GUI*',
-                '*vendors*']
+                '*vendors*',
+                '*shared*']
 
 
 templates_path = ['_templates']

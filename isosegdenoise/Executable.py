@@ -5,9 +5,7 @@ This is the file containing the launch point for the isoSegDenoise GUI
 
 import logging
 import argparse
-
 from .app_entry import App #type: ignore
-
 import warnings
 
 warnings.filterwarnings("ignore", message = "The legacy Dask DataFrame implementation is deprecated") 
