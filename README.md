@@ -1,6 +1,7 @@
 ## isoSegDenoise
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/BenCaiello/isoSegDenoise/python-app.yml) 
+![Coverage](./coverage-badge.svg)
 ![Pepy Total Downloads](https://img.shields.io/pepy/dt/isosegdenoise)
 ![PyPI - Version](https://img.shields.io/pypi/v/isosegdenoise)
 ![Read the Docs](https://img.shields.io/readthedocs/isoSegDenoise)

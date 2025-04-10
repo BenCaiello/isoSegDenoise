@@ -42,13 +42,7 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
-        genbadge coverage
-
-    - name: recover coverage badge
-      uses: actions/upload-artifact@v4
-      with: 
-        name: code coverage
-        path: coverage-badge.svg
+        genbadge coverage -i ./coverage.xml
 
 #  build3_11:
 #
