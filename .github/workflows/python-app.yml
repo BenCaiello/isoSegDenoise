@@ -29,7 +29,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install uv pytest pytest-cov pytest-xvfb
+        pip install uv pytest pytest-cov pytest-xvfb genbadge[coverage]
         uv pip install . --system    
     #    uv pip install "tensorflow==2.13.*" --system
     #    uv pip install "tensorflow-addons>=0.16.1" --system 
@@ -41,13 +41,14 @@ jobs:
         uvx ruff check isosegdenoise/ --exit-zero
     - name: Test with pytest
       run: |
-        python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report json:coverage.json tests/
+        python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
+        genbadge coverage
 
-    - name: recover coverage json
+    - name: recover coverage badge
       uses: actions/upload-artifact@v4
       with: 
         name: code coverage
-        path: coverage.json
+        path: coverage-badge.svg
 
 #  build3_11:
 #
