@@ -3,13 +3,11 @@ This module contains the back-end / image processing classes and functions that 
 Particularly the ImageProcessing class and its subclasses handles most of these functions. This is also the only important module
 for the non-GUI API of isoSegDenoise, and the only module that call to the _steinbock.py module. 
 
-Portions of this file (    functions marked with a comment -- not visible in API docs, only the file itself:
+Portions of this file  are derivative / partially copy&paste with modification from the steinbock package (Copyright University of Zurich, 2021, MIT license)
+
+(    functions marked with a comment -- not visible in API docs, only the file itself:
 
     >>>> # ****stein_derived (notes)             ) 
-
-are derivative / partially copy&paste with modification from the steinbock package (Copyright University of Zurich, 2021, MIT license)
-
-    --> see charedClasses or steinbock_for_deepcell_alone for a full copy of the MIt license & copryight holder / date for steinbock
 
 Additionally, the assumed directory structure and panel file are derived from those structures/files from steinbock
 
@@ -108,7 +106,7 @@ def mask_expand(distance: int,
             the file path to a folder containing the cell masks (as tiff files) to expand
 
         output_directory (string or Path): 
-            the file path to a folder containing the cell masks (as tiff files) to expand
+            the file path to a folder where you want to write the expanded masks. Must already exist or be creatable by os.mkdir()
 
     Inputs / Outputs:
         Inputs: 
@@ -142,17 +140,17 @@ class ImageProcessing:
             this attribute is a sub-class from Utils/SharedClasses.py module. it coordinates directories of the typical PalmettoBUG project.
             sub-Attributes:
 
-                - (directory_object).main = self.directory
+                - directory_object.main = self.directory
 
-                - raw_dir = {self.directory}/raw, the folder where the original mcds / tiffs are located. Not interacted with by isoSegDenoise
+                - directory_object.raw_dir = {self.directory}/raw, the folder where the original mcds / tiffs are located. Not interacted with by isoSegDenoise
 
-                - img_dir = {self.directory}/images, the folder where sub-folders of images are located. The /img subfolder contains the .tiffs converted from raw_dir. 
-                    In the GUI, many steps looks inside img_dir for sub-folders of images to use, and denoisings automatically export there as well.
+                - directory_object.img_dir = {self.directory}/images, the folder where sub-folders of images are located. The /img subfolder contains the .tiffs converted from raw_dir. 
+                In the GUI, many steps looks inside img_dir for sub-folders of images to use, and denoisings automatically export there as well.
 
-                - masks_dir = {self.directory}/masks, the folder where sub-folders of cell masks are located. deepcell and cellpose segmentation automatically export to 
-                    the subfolders masks_dir/deepcell_masks and masks_dir/cellpose_masks, respectively. Mask expansion reads/writes from subfolders of masks_dir. 
+                - directory_object.masks_dir = {self.directory}/masks, the folder where sub-folders of cell masks are located. deepcell and cellpose segmentation automatically export to 
+                the subfolders masks_dir/deepcell_masks and masks_dir/cellpose_masks, respectively. Mask expansion reads/writes from subfolders of masks_dir. 
 
-                - logs = {self.directory}/Logs, the folder where log files are written by the GUI. 
+                - directory_object.logs = {self.directory}/Logs, the folder where log files are written by the GUI. 
 
         resolutions (list[float, float]): 
             the X and Y resolutions of the images, in micrometers / pixel
@@ -163,7 +161,7 @@ class ImageProcessing:
     '''
     def __init__(self, 
                  directory: Union[Path, str, None],
-                 resolutions: tuple[float, float] = [1.0,1.0]):
+                 resolutions: tuple[float, float] = [1.0, 1.0]):
         '''
         X and Y are the resolution of the images (in micrometers)
         '''
@@ -177,54 +175,53 @@ class ImageProcessing:
 
     def _panel_setup(self) -> None:
         '''
-        Setups the Panel file. Unlike PalmetoBug version of this function, this always assumes a panel file is available in the provided directory
+        Setups the Panel file. Unlike PalmettoBUG version of this function, this always assumes a panel file is available in the provided directory
         (it does not attempt to construct a preliminary verison of the panel if a panel is not available in the directory)
         '''
         self.panel = pd.read_csv("".join([self.directory_object.main, "/panel.csv"]))   ## isosegdenoise can just always assume a panel should exist
         return
-        if self.from_mcds:
+        #if self.from_mcds:
             #try:
-            self.panel = pd.read_csv("".join([self.directory_object.main, "/panel.csv"]))
-            '''
-            except FileNotFoundError:
-                MCD_list = list_mcd_files(self.directory_object.main) 
-                self.panel = create_panel_from_mcd_files(MCD_list)  
-                self.panel = self.panel.drop(['ilastik','cellpose','deepcell'], axis = 1)     
-                        # unwanted columns from the underlying steinbock package implementation
-                self.panel['segmentation'] = ""
+        #    self.panel = pd.read_csv("".join([self.directory_object.main, "/panel.csv"]))
+        #    '''
+        #    except FileNotFoundError:
+        #        MCD_list = list_mcd_files(self.directory_object.main) 
+        #        self.panel = create_panel_from_mcd_files(MCD_list)  
+        #        self.panel = self.panel.drop(['ilastik','cellpose','deepcell'], axis = 1)     
+        #                # unwanted columns from the underlying steinbock package implementation
+        #        self.panel['segmentation'] = ""
 
                 ## This auto-sets background channels to keep = 0 (based on duplicating entry in the channel / name columns)
-                numbers_channel = self.panel['channel'].str.replace("[^0-9]","", regex = True)
-                letters_channel = self.panel['channel'].str.replace("[0-9]","", regex = True)
-                self.panel['channel_test'] = numbers_channel + letters_channel
-                
-                numbers_name = self.panel['name'].str.replace("[^0-9]","", regex = True)
-                letters_name = self.panel['name'].str.replace("[0-9]","", regex = True)
-                self.panel['name_test'] = numbers_name + letters_name
-                
-                keep = (self.panel['channel_test'] != self.panel['name_test'])
-                self.panel['keep'] = keep
-                self.panel['keep'] = self.panel['keep'].astype('int')
-                self.panel = self.panel.drop(['channel_test','name_test'],axis=1)
-            '''
-        else:
-            try:
-                read_dir = "".join([self.directory_object.main, "/panel.csv"])
-                self.panel = pd.read_csv(read_dir)     ## read in panel file if it already exists 
-            except FileNotFoundError:
-                image_list = sorted(os.listdir(self.directory_object.main + "/raw"))
-                reader_string = "".join([self.directory_object.main, "/raw/", image_list[0]])
-                tiff_file1 = tf.imread(reader_string)
-                channel_list = [i for i in range(tiff_file1.shape[0])]
-                #### now make the initial pd.DataFrame to hold the table widget:
-                Init_Table = pd.DataFrame()
-                Init_Table['channel'] = channel_list
-                Init_Table['name'] = channel_list
-                Init_Table['keep'] = 1         # default to keeping all channels
-                Init_Table['segmentation'] = "" 
-                self.panel = Init_Table
-                Init_Table.to_csv(self.directory_object.main + "/panel.csv", index = False)  
-    
+        #        numbers_channel = self.panel['channel'].str.replace("[^0-9]","", regex = True)
+        #        letters_channel = self.panel['channel'].str.replace("[0-9]","", regex = True)
+        #        self.panel['channel_test'] = numbers_channel + letters_channel
+        #        
+        #        numbers_name = self.panel['name'].str.replace("[^0-9]","", regex = True)
+        #        letters_name = self.panel['name'].str.replace("[0-9]","", regex = True)
+        #        self.panel['name_test'] = numbers_name + letters_name
+        #        
+        #        keep = (self.panel['channel_test'] != self.panel['name_test'])
+        #        self.panel['keep'] = keep
+        #        self.panel['keep'] = self.panel['keep'].astype('int')
+        #        self.panel = self.panel.drop(['channel_test','name_test'],axis=1)
+        #    '''
+        #else:
+        #    try:
+        #        read_dir = "".join([self.directory_object.main, "/panel.csv"])
+        #        self.panel = pd.read_csv(read_dir)     ## read in panel file if it already exists 
+        #    except FileNotFoundError:
+        #        image_list = sorted(os.listdir(self.directory_object.main + "/raw"))
+        #        reader_string = "".join([self.directory_object.main, "/raw/", image_list[0]])
+        #        tiff_file1 = tf.imread(reader_string)
+        #        channel_list = [i for i in range(tiff_file1.shape[0])]
+        #        #### now make the initial pd.DataFrame to hold the table widget:
+        #        Init_Table = pd.DataFrame()
+        #        Init_Table['channel'] = channel_list
+        #        Init_Table['name'] = channel_list
+        #        Init_Table['keep'] = 1         # default to keeping all channels
+        #        Init_Table['segmentation'] = "" 
+        #        self.panel = Init_Table
+        #        Init_Table.to_csv(self.directory_object.main + "/panel.csv", index = False)  
 
     ##### Panel / Metadata / Analysis panel writers:
     def panel_write(self) -> None:
@@ -244,24 +241,55 @@ class ImageProcessing:
     def deepcell_segment(self, 
                          image_folder: str, 
                          output_folder: Union[str, None] = None,                             # TODO: set a None default to /images/img
-                         image_list: list[str] = ["ALL"], 
+                         image_list: str = "ALL", 
                          re_do: bool = False,
-                         is_torch = None,
+                         is_torch: Union[bool, None] = None,
                          ) -> None:                                      # ****stein_derived (implements / directly uses parts of 
                                                                             # steinbock.segmentation.deepcell.py file
                                                                             # lines directly derived marked with # ***)
         '''
-        Runs mesmer segmentation, and writes masks to output_folder
+        Runs deepcell / mesmer segmentation, and writes masks to output_folder
+
+        Args:
+            image_folder (string / Pathlike): 
+                The directory to a folder of .tiff files to be denoised. If attempting to run all the images in this folder (img = "")
+                then this folder MUST ONLY contain .tiff files and nothing else (including no subfolders). 
+
+            output_folder (string / Pathlike): 
+                The directory of the folder where the denoised images are to be written.
+
+            image_list (string): 
+                If "All" --> attempts to segment every file in image_folder. Otherwise, the value in the list should be one of the image's filenames
+                (discoverable by os.listdir(image_folder)). 
+
+            re_do (boolean): 
+                whether to skip or to redo images that already have mask files in output_folder. If == False, then images in image_folder that
+                already have a matching file in output_folder will be skipped and not segmented again.  If True, will segment every imgae in image_folder,
+                overwriting any previously done masks with matching filenames to the filenames in image_folder. 
+                Use case: if new .mcd's / .tiff's have been added to the project, and you only need those to be segmented, redo = False will save time by 
+                not redoing the segmentation of the project's original images.
+
+            is_torch (boolean, or None):
+                whether to use the original tensorflow backend for mesmer segmentation (False), use the new PyTorch / ONNX converted backend (True), or allow
+                iSD to automatically decide which to try to use (None). If None, iSD will prefer tensorflow if it can be imported -- and failing import of tensorflow
+                will instead use PyTorch. 
+        
+        Inputs / Outputs:
+            Inputs: 
+                reads .tiff file(s) from image_folder
+
+            Outputs: 
+                writes .tiff file(s) to output_folder
         '''
         if output_folder is None:
             output_folder = self.directory + "/masks/deepcell_masks"
         if not os.path.exists(output_folder):
             os.mkdir(output_folder) 
 
-        if image_list == ["ALL"]:
+        if image_list == "ALL":
             img_files = sorted(Path(image_folder).rglob("[!.]*.tiff"))    # ***
         else:
-            img_files =  sorted(Path(image_folder).rglob(f"*{image_list[0]}.tiff"))  # *** 
+            img_files =  sorted(Path(image_folder).rglob(f"*{image_list}.tiff"))  # *** 
         
         if (re_do is False) and (image_list == ["ALL"]): 
             new_list = []
@@ -518,10 +546,7 @@ class ImageProcessing:
 
 class _CellposeDenoiseExecutor:
     '''
-    This class coordinates cellpose segmentation
-
-    methods: 
-            segment: execute cellpose denoising. Accepts more hyperparameters of cellpose models
+    This class coordinates cellpose denoising
     '''
     def __init__(self):
         pass

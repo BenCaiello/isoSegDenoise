@@ -824,7 +824,7 @@ class DeepCell_window(ctk.CTkToplevel, metaclass = CtkSingletonWindow):
         if image != "ALL":
             image = image[:image.rfind(".")]
         self.master.ImageAnalysisPortionLogger.info(f"Segmenting with DeepCell using image = {image}")
-        self.master.run_deepcell([image], re_do = self.re_do.get(), image_folder = image_folder, output_folder = output_folder)
+        self.master.run_deepcell(image, re_do = self.re_do.get(), image_folder = image_folder, output_folder = output_folder)
         self.master.dir_disp.list_dir()
 
         if image == "ALL":
