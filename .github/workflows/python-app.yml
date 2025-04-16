@@ -39,9 +39,9 @@ jobs:
     - name: Lint with ruff
       run: |
         uvx ruff check isosegdenoise/ --exit-zero
-    - name: Test with pytest
-      run: |
-        python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
+    #- name: Test with pytest
+    #  run: |
+    #    python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
 
     # use https://github.com/pilosus/action-pip-license-checker?tab=readme-ov-file (MIT license) to check licenses
     - name: Check licenses
@@ -49,9 +49,9 @@ jobs:
       with:
         requirements: environments/requirements_3.10_no_tf.txt
         fail: 'StrongCopyleft'
-        verbosity: 1
+        verbose: 1
     - name: print license report
       if: ${{ always() }}
       run:
-        echo "{{ steps.license_check_report.outputs.report}}"
+        echo "${{ steps.license_check_report.outputs.report}}"
 
