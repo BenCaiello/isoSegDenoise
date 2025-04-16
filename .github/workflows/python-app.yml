@@ -44,36 +44,19 @@ jobs:
         python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
         genbadge coverage -i ./coverage.xml
 
+    # use https://github.com/pilosus/action-pip-license-checker?tab=readme-ov-file (MIT license) to check licenses
+    - name: Check licenses
+      uses: pilosus/action-pip-license-checker@v2 
+      with:
+        requirements: environments/requirements_3.10_no_tf.txt
+        fail: 'StrongCopyleft'
+
+    - name: print license report
+      run:
+        echo "{{ steps.license_check_report.outputs.report}}"
+
 #    - name: recover coverage badge
 #      uses: actions/upload-artifact@v4
 #      with: 
 #        name: code coverage
 #        path: coverage-badge.svg
-
-#  build3_11:
-#
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#    - uses: actions/checkout@v4
-#    - name: Set up Python 3.11
-#      uses: actions/setup-python@v3
-#      with:
-#        python-version: "3.11"
-#        # cache: "pip"
-#    - name: Install dependencies
-#      run: |
-#        python -m pip install --upgrade pip
-#        pip install uv pytest
-#        uv pip install . --system    
-#    #    uv pip install "tensorflow==2.13.*" --system
-#    #    uv pip install "tensorflow-addons>=0.16.1" --system 
-#    #    uv pip install "keras<3.0.0" --system
-#    #    uv pip install "typing-extensions==4.13.0" --system
-#    ##   uv is not compatible with the current setup of pyproject.toml (particularly for the [tensorflow] tag). 
-#    - name: Lint with ruff
-#      run: |
-#        uvx ruff check isosegdenoise/ --exit-zero
-#    - name: Test with pytest
-#      run: |
-#        pytest
