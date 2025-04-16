@@ -43,9 +43,9 @@ jobs:
     #  run: |
     #    python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
 
-  ## license check below doesn't list packages with licenses, so entirely useless (and impossible to check accuracy!)
-  - name: check licenses
-    run: pip-licenses
+    ## license check below doesn't list packages with licenses, so entirely useless (and impossible to check accuracy!)
+    - name: check licenses
+      run: pip-licenses
 
 
 
