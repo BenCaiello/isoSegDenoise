@@ -43,6 +43,12 @@ jobs:
     #  run: |
     #    python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
 
+    ## license checker below seems to be just failing to run at all. try alternate: https://github.com/soheilbr82/automated-license-check
+    - name: Run License Compliance Checker
+      uses: soheilbr82/automated-license-check@v1
+      with:
+        allowed_licenses: "MIT, Apache-2.0, BSD-3-Clause"
+
     # use https://github.com/pilosus/action-pip-license-checker?tab=readme-ov-file (MIT license) to check licenses
     - name: Check licenses
       uses: pilosus/action-pip-license-checker@v2 
@@ -50,6 +56,7 @@ jobs:
         requirements: 'environments/requirements_3_10_no_tf.txt'
         fail: 'StrongCopyleft'
         fails-only: true
+        totals: true
         verbose: 1
     - name: print license report
       if: ${{ always() }}
