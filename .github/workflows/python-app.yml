@@ -39,21 +39,11 @@ jobs:
     - name: Lint with ruff
       run: |
         uvx ruff check isosegdenoise/ --exit-zero
-    #- name: Test with pytest
-    #  run: |
-    #    python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
+    - name: Test with pytest
+      run: |
+        python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
 
-    ## license check below doesn't list packages with licenses, so entirely useless (and impossible to check accuracy!)
+    ## visual inspection of the licenses listed & check of  UNKOWN licenses -- no problematic licenses (all LGPL / MPL, permissive, or NVIDIA CUDA licenses) 
+    # except docutils (one file GPL3) which seems to be an exception because of the file in question isn't python / how it is packaged.
     - name: check licenses
       run: pip-licenses
-
-
-
-
-
-    ## license checker below seems to be just failing to run at all. try alternate: https://github.com/soheilbr82/automated-license-check
-    #- name: Run License Compliance Checker
-    #  uses: soheilbr82/automated-license-check@v1
-    #  with:
-    #    allowed_licenses: "MIT, Apache-2.0, BSD-3-Clause"
-
