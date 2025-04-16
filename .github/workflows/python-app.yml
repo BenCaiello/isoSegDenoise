@@ -47,11 +47,11 @@ jobs:
     - name: Check licenses
       uses: pilosus/action-pip-license-checker@v2 
       with:
-        requirements: environments/requirements_3.10_no_tf.txt
+        requirements: 'environments/requirements_3.10_no_tf.txt'
         fail: 'StrongCopyleft'
+        fails-only: true
         verbose: 1
     - name: print license report
       if: ${{ always() }}
-      run:
-        echo "${{ steps.license_check_report.outputs.report}}"
+      run: echo "${{ steps.license_check_report.outputs.report}}"
 
