@@ -9,7 +9,7 @@ license = {text = "Multiple: BSD-3, MIT, academic / non-commercial"}
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "cellpose>=3.0.8",
+    "cellpose<4",
     "numpy<2.0.0",
     "pandas>=2.0",
     "napari",
