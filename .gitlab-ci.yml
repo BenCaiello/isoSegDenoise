@@ -1,0 +1,38 @@
+# made from a GitLab CI/CD template    (original license, before modification: MIT)
+
+default:
+  image: python:3.10
+
+stages:          # List of stages for jobs, and their order of execution
+  - build
+  - test
+
+include:
+- template: Security/SAST.gitlab-ci.yml
+
+sast:
+  stage: build
+  artifacts:        ### the response of Cynthia Baran in this thread 
+                    ## (https://stackoverflow.com/questions/64232630/gitlab-ci-sast-access-to-gl-sast-report-json-artifact-in-subsequent-stage) 
+                    ## was helpful here to be able to see the security reports
+    paths: 
+      - gl-sast-report.json
+
+build-job:
+  stage: build     # build
+  script:
+    - python -m venv build
+    - build/bin/pip install poetry
+    - mkdir dist
+    - build/bin/poetry build
+  artifacts:
+    paths:
+      - dist/isosegdenoise-0.1.0-py3-none-any.whl
+      
+
+test-job:   
+  stage: test
+  script:
+    - pip install -e .
+    - python tests/test_seg.py
+    #- pip install -e .[tensorflow]
