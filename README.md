@@ -10,7 +10,7 @@ Badges, except coverage, made in: https://shields.io/
 
 ## Welcome!
 
-isoSegDenoise is a sister package, almost more of a plugin to the main PalmettoBUG package. However, it can theoretically be used as a fully independent program from PalmettoBUG.  
+isoSegDenoise is a sister package, almost more of a plugin to the main PalmettoBUG package (https://github.com/BenCaiello/PalmettoBUG). However, it can theoretically be used as a fully independent program from PalmettoBUG.  
 It performs denoising and deepcell / cellpose segmentation steps within a PalmettoBUG-style directory structure. 
 
 _Why was this separated from PalmettoBUG?_
