@@ -29,9 +29,9 @@ name: Python application
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "python3.10" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "python3.10" ]
 
 permissions:
   contents: read
@@ -51,7 +51,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install uv pytest pytest-cov pytest-xvfb pip-licenses
+        pip install uv pytest pytest-xvfb pip-licenses
         uv pip install . --system    
     #    uv pip install .[tensorflow] --system  
 
@@ -60,7 +60,7 @@ jobs:
         uvx ruff check isosegdenoise/ --exit-zero
     - name: Test with pytest
       run: |
-        python -m pytest -p pytest_cov --cov=isosegdenoise --cov-report xml:coverage.xml tests/
+        python -m pytest tests/
 
     ## visual inspection of the licenses listed & check of  UNKOWN licenses -- no problematic licenses (all LGPL / MPL, permissive, or NVIDIA CUDA licenses) 
     # except docutils (one file GPL3) which seems to be an exception because of the file in question isn't python / how it is packaged.
